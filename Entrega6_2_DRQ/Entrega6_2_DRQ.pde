@@ -112,3 +112,56 @@ void keyPressed() {
     break;
   }
 }
+
+void mousePressed() {
+// el Clic izquierdo muestra los mensajes de cual escena está la historia
+push();
+mensaje = "La condena";
+if (escenaActual== 0 && mouseButton == LEFT ) {
+text(mensaje, 0, -300);
+}
+pop();
+
+push();
+mensaje = "Vida en el hotel";
+if (escenaActual == 1 && mouseButton == LEFT ) {
+text(mensaje,  0, -300);
+}
+pop();
+
+push();
+mensaje = "Amistades";
+if (escenaActual == 2 && mouseButton == LEFT ) {
+text(mensaje,  0, -300);
+}
+pop();
+
+push();
+mensaje = "Sofía";
+if (escenaActual == 3 && mouseButton == LEFT ) {
+text(mensaje,  0, -300);
+}
+pop();
+
+push();
+mensaje = "Transformación";
+if (escenaActual == 4 && mouseButton == LEFT ) {
+text(mensaje,  0, -300);
+}
+pop();
+
+push();
+mensaje = "Escape";
+if (escenaActual == 5 && mouseButton == LEFT ) {
+text(mensaje,  0, -300);
+}
+pop();
+
+push();
+mensaje = "Final";
+if (escenaActual == 6 && mouseButton == LEFT ) {
+text(mensaje,  0, -300);
+}
+pop();
+
+}
