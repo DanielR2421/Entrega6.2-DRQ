@@ -115,6 +115,8 @@ void keyPressed() {
 
 void mousePressed() {
 // el Clic izquierdo muestra los mensajes de cual escena está la historia
+
+//Mensaje escena 1
 push();
 mensaje = "La condena";
 if (escenaActual== 0 && mouseButton == LEFT ) {
@@ -122,6 +124,7 @@ text(mensaje, 0, -300);
 }
 pop();
 
+//Mensaje escena 2
 push();
 mensaje = "Vida en el hotel";
 if (escenaActual == 1 && mouseButton == LEFT ) {
@@ -129,6 +132,7 @@ text(mensaje,  0, -300);
 }
 pop();
 
+//Mensaje escena 3
 push();
 mensaje = "Amistades";
 if (escenaActual == 2 && mouseButton == LEFT ) {
@@ -136,6 +140,7 @@ text(mensaje,  0, -300);
 }
 pop();
 
+//Mensaje escena 4
 push();
 mensaje = "Sofía";
 if (escenaActual == 3 && mouseButton == LEFT ) {
@@ -143,6 +148,7 @@ text(mensaje,  0, -300);
 }
 pop();
 
+//Mensaje escena 5
 push();
 mensaje = "Transformación";
 if (escenaActual == 4 && mouseButton == LEFT ) {
@@ -150,6 +156,7 @@ text(mensaje,  0, -300);
 }
 pop();
 
+//Mensaje escena 6
 push();
 mensaje = "Escape";
 if (escenaActual == 5 && mouseButton == LEFT ) {
@@ -157,6 +164,7 @@ text(mensaje,  0, -300);
 }
 pop();
 
+//Mensaje escena 7
 push();
 mensaje = "Final";
 if (escenaActual == 6 && mouseButton == LEFT ) {
