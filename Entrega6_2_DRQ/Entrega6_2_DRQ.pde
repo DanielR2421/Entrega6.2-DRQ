@@ -21,7 +21,7 @@ boolean escenaSecundaria = false;
 int objetoSeleccionado = -1;
 
 // Variables para mostrar el texto de la historia
-boolean mostrandoTexto = false;
+boolean mostrarTexto = false;
 String textoHistoria = "";
 String tituloHistoria = "";
 
@@ -205,19 +205,19 @@ void draw() {
   }
   
   // Mostrar el texto de la historia si está activo
-  if (mostrandoTexto) {
+  if (mostrarTexto) {
     // Fondo semi-transparente para el texto
     fill(0, 0, 0, 200);
     rect(0, height - 200, width, 200);
     
     // Título
     fill(255);
-    textSize(24);
+    textSize(28);
     textAlign(CENTER);
     text(tituloHistoria, width/2, height - 170);
     
     // Texto de la historia
-    textSize(16);
+    textSize(20);
     textAlign(CENTER);
     text(textoHistoria, 50, height - 140, width - 100, 120);
     
@@ -225,13 +225,25 @@ void draw() {
     textSize(14);
     textAlign(RIGHT);
     text("Presiona ESPACIO para cerrar", width - 50, height - 20);
+    
+    // Instrucción para cambiar
+    textSize(14);
+    textAlign(LEFT);
+    text("Presiona FLECHA DERECHA para AVANZAR a la siguiente escena", width - 1230, height - 40);
+    text("O FLECHA IZQUIERDA para RETROCEDER a la anterior", width - 1230, height - 20);
+    
+    textSize(12);
+    textAlign(CENTER);
+    text("Presiona 'a','b','c'para ver las escenas secundarias", width - 640, height - 40);
+    text("Disponible en las escenas 3, 4, 5, 6", width - 640, height - 20); 
+    
   }
 }
 
 void keyPressed() {
   // Cerrar el texto si está mostrándose
-  if (mostrandoTexto && key == ' ') {
-    mostrandoTexto = false;
+  if (mostrarTexto && key == ' ') {
+    mostrarTexto = false;
     return;
   }
   
@@ -240,12 +252,12 @@ void keyPressed() {
     escenaActual = (escenaActual + 1) % 7;
     mensaje = "";
     versionEscena = 0; // Resetear al cambiar de escena
-    mostrandoTexto = false; // Ocultar texto al cambiar de escena
+    mostrarTexto = false; // Ocultar texto al cambiar de escena
   } else if (keyCode == LEFT) {
     escenaActual = (escenaActual + 6) % 7;
     mensaje = "";
     versionEscena = 0; // Resetear al cambiar de escena
-    mostrandoTexto = false; // Ocultar texto al cambiar de escena
+    mostrarTexto = false; // Ocultar texto al cambiar de escena
   }
 
   // Mostrar imágenes secundarias
@@ -260,8 +272,8 @@ void keyPressed() {
 
 void mousePressed() {
   // Si está mostrando texto, ocultarlo al hacer clic
-  if (mostrandoTexto) {
-    mostrandoTexto = false;
+  if (mostrarTexto) {
+    mostrarTexto = false;
     return;
   }
   
@@ -314,7 +326,7 @@ void mouseReleased() {
 
 // Función para mostrar el texto de la historia
 void mostrarTextoHistoria(int indiceObjeto) {
-  mostrandoTexto = true;
+  mostrarTexto = true;
   tituloHistoria = objetoMovible[indiceObjeto].tituloTexto;
   textoHistoria = objetoMovible[indiceObjeto].textoCompleto;
 }
