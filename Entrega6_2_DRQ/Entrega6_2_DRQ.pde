@@ -20,7 +20,7 @@ int objetoSeleccionado = -1;
 void setup() {
   size(1280, 800);
   escenaActual = 0;
-  
+
   // Cargar las 7 imágenes
   sc1 = loadImage("escena1.jpeg");
   sc2 = loadImage("escena2.jpeg");
@@ -48,7 +48,7 @@ void setup() {
   imgLlave = loadImage("escena1.jpeg");
   imgCarta = loadImage("escena1.jpeg");
   imgPiano = loadImage("escena1.jpeg");
-  
+
   // Inicializar objetos
   objetoMovible[0] = new objetoMov(imgReloj, 400, 300, "El reloj del Hotel Metropol", 0);
   objetoMovible[1] = new objetoMov(imgLibro, 400, 300, "El libro de Montaigne", 1);
@@ -63,20 +63,44 @@ void draw() {
   background(0);
 
   // Dibujar la escena actual
+
+
   if (escenaActual == 0) {
-    image(sc1, 0, 0, width, height);
+    //Centrar las imagenes
+    float centroX = (width - sc1.width) / 2;
+    float centroY = (height - sc1.height) / 2;
+    image(sc1, centroX, centroY);
+
   } else if (escenaActual == 1) {
-    image(sc2, 0, 0, width, height);
+    
+    float centroX2 = (width - sc2.width) / 2;
+    float centroY2 = (height - sc2.height) / 2;
+    image(sc2, centroX2, centroY2);
   } else if (escenaActual == 2) {
-    image(sc3, 0, 0, width, height);
+    
+   float centroX3 = (width - sc3.width) / 2;
+    float centroY3 = (height - sc3.height) / 2;
+    image(sc3, centroX3, centroY3);
   } else if (escenaActual == 3) {
-    image(sc4, 0, 0, width, height);
+    
+    float centroX4 = (width - sc4.width) / 2;
+    float centroY4 = (height - sc4.height) / 2;
+    image(sc4, centroX4, centroY4);
   } else if (escenaActual == 4) {
-    image(sc5, 0, 0, width, height);
+    
+    float centroX5 = (width - sc5.width) / 2;
+    float centroY5 = (height - sc5.height) / 2;
+    image(sc5, centroX5, centroY5);
   } else if (escenaActual == 5) {
-    image(sc6, 0, 0, width, height);
+    
+    float centroX6 = (width - sc6.width) / 2;
+    float centroY6 = (height - sc6.height) / 2;
+    image(sc6, centroX6, centroY6);
   } else if (escenaActual == 6) {
-    image(sc7, 0, 0, width, height);
+    
+    float centroX7 = (width - sc7.width) / 2;
+    float centroY7 = (height - sc7.height) / 2;
+    image(sc7, centroX7, centroY7);
   }
 
   // Mostrar objetos interactivos
@@ -85,7 +109,7 @@ void draw() {
       objetoMovible[i].display();
     }
   }
-  
+
   // Mostrar mensaje
   if (mensaje != "") {
     fill(255);
@@ -107,41 +131,41 @@ void keyPressed() {
 
   // Mostrar imágenes alternativas
   switch(escenaActual) {
-    case 0:
-      if (key == 'a') {
-        image(sc1a, 0, 0, width, height);
-      }
-      break;
-    case 1:
-      if (key == 'b') {
-        image(sc2b, 0, 0, width, height);
-      }
-      break;
-    case 2:
-      if (key == 'c') {
-        image(sc3c, 0, 0, width, height);
-      }
-      break;
-    case 3:
-      if (key == 'd') {
-        image(sc4d, 0, 0, width, height);
-      }
-      break;
-    case 4:
-      if (key == 'e') {
-        image(sc5e, 0, 0, width, height);
-      }
-      break;
-    case 5:
-      if (key == 'f') {
-        image(sc6f, 0, 0, width, height);
-      }
-      break;
-    case 6:
-      if (key == 'g') {
-        image(sc7g, 0, 0, width, height);
-      }
-      break;
+  case 0:
+    if (key == 'a') {
+      image(sc1a, 0, 0, width, height);
+    }
+    break;
+  case 1:
+    if (key == 'b') {
+      image(sc2b, 0, 0, width, height);
+    }
+    break;
+  case 2:
+    if (key == 'c') {
+      image(sc3c, 0, 0, width, height);
+    }
+    break;
+  case 3:
+    if (key == 'd') {
+      image(sc4d, 0, 0, width, height);
+    }
+    break;
+  case 4:
+    if (key == 'e') {
+      image(sc5e, 0, 0, width, height);
+    }
+    break;
+  case 5:
+    if (key == 'f') {
+      image(sc6f, 0, 0, width, height);
+    }
+    break;
+  case 6:
+    if (key == 'g') {
+      image(sc7g, 0, 0, width, height);
+    }
+    break;
   }
 }
 
@@ -164,12 +188,12 @@ void mousePressed() {
       mensaje = "Final";
     }
   }
-  
+
   // Verificar si se seleccionó un objeto
   for (int i = 0; i < 7; i++) {
     if (objetoMovible[i].escena == escenaActual) {
-      if (mouseX > objetoMovible[i].x && mouseX < objetoMovible[i].x + 100 && 
-          mouseY > objetoMovible[i].y && mouseY < objetoMovible[i].y + 100) {
+      if (mouseX > objetoMovible[i].x && mouseX < objetoMovible[i].x + 100 &&
+        mouseY > objetoMovible[i].y && mouseY < objetoMovible[i].y + 100) {
         objetoSeleccionado = i;
         arrastrando = true;
         mensaje = objetoMovible[i].texto;
@@ -197,7 +221,7 @@ class objetoMov {
   float y;
   String texto;
   int escena;
-  
+
   // Constructor
   objetoMov(PImage imagen, float posX, float posY, String descripcion, int numEscena) {
     img = imagen;
@@ -206,7 +230,8 @@ class objetoMov {
     texto = descripcion;
     escena = numEscena;
   }
-  
+
+  //Mofificar los ultimos 2 para usar el tamaño de las imagenes osea para conservar el orirginal quitar el 100, 100
   void display() {
     image(img, x, y, 100, 100);
   }
