@@ -57,7 +57,7 @@ void setup() {
   imgCarta = loadImage("escena1.jpeg");
   imgPiano = loadImage("escena1.jpeg");
 
-  // Inicializar objetos con sus textos correspondientes
+  // Inicializar objetos con sus textos correspondientes de acuerdo con su clase
   objetoMovible[0] = new objetoMov(imgReloj, 400, 300, "El reloj del Hotel Metropol", 0, "La Condena del Conde Rostov", 
     "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
     "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
@@ -92,10 +92,8 @@ void setup() {
 
 void draw() {
   background(0);
-
   //  Incidarores de cuando debe ir organizada la escena actual junto con las escenas secundarias
-
-
+  
   if (escenaActual == 0) {
     //Centrar las imagenes con las variables designadas para representar o una escena principal o una escena secundaria
     float centroX = (width - sc1.width) / 2;
@@ -263,11 +261,11 @@ void keyPressed() {
 
   // Mostrar imágenes secundarias
   if (key == 'a') {
-    versionEscena = (versionEscena == 1) ? 0 : 1;  // Alterna entre normal y versión A
+    versionEscena = (versionEscena == 1) ? 0 : 1;  // Alterna entre Escena principal y versión A
   } else if (key == 'b') {
-    versionEscena = (versionEscena == 2) ? 0 : 2;  // Alterna entre normal y versión B
+    versionEscena = (versionEscena == 2) ? 0 : 2;  // Alterna entre Escena principal y versión B
   } else if (key == 'c') {
-    versionEscena = (versionEscena == 3) ? 0 : 3;  // Alterna entre normal y versión C
+    versionEscena = (versionEscena == 3) ? 0 : 3;  // Alterna entre Escena principal y versión C
   }
 }
 
