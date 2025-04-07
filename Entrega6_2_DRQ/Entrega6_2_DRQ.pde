@@ -124,11 +124,18 @@ void draw() {
     float centroX6 = (width - sc6.width) / 2;
     float centroY6 = (height - sc6.height) / 2;
     
-    if (escenaSecundaria) {
-      image(sc6f, centroX6, centroY6);
-    } else {
-      image(sc6, centroX6, centroY6);
-    }
+   if (versionEscena == 1) {
+    image(sc5e, centroX6, centroY6);  // Versión A (6A)
+  } 
+  else if (versionEscena == 2) {
+    image(sc6f, centroX6, centroY6);  // Versión B (6B)
+  }
+  else if (versionEscena == 3) {
+    image(sc7g, centroX6, centroY6);  // Versión C (6C)
+  }
+  else {
+    image(sc6, centroX6, centroY6);   // Versión normal
+  }
   } else if (escenaActual == 6) {
     
     float centroX7 = (width - sc7.width) / 2;
@@ -171,11 +178,14 @@ void keyPressed() {
   }
 
 // Mostrar imágenes secundarias
- if ((escenaActual == 2 && (key == 'a' || key == 'b')) ||    // 3A, 3B para escena 2
-      (escenaActual == 3 && key == 'a') ||                    // 4A para escena 3
-      (escenaActual == 4 && key == 'a') ||                    // 5A para escena 4
-      (escenaActual == 5 && (key == 'a' || key == 'b' || key == 'c'))) {  // 6A, 6B, 6C para escena 5
-    escenaSecundaria = !escenaSecundaria;  // Esto cambia entre true y false
+ if (key == 'a') {
+    versionEscena = (versionEscena == 1) ? 0 : 1;  // Alterna entre normal y versión A
+  }
+  else if (key == 'b') {
+    versionEscena = (versionEscena == 2) ? 0 : 2;  // Alterna entre normal y versión B
+  }
+  else if (key == 'c') {
+    versionEscena = (versionEscena == 3) ? 0 : 3;  // Alterna entre normal y versión C
   }
 }
 
