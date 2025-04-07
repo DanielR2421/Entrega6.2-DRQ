@@ -200,7 +200,7 @@ void keyPressed() {
 }
 
 void mousePressed() {
-  // Establecer mensaje cuando se hace clic izquierdo
+  // Mensaje cuando se hace clic izquierdo, toca cambiarlo para dar contexto de la historia
   if (mouseButton == LEFT) {
     if (escenaActual == 0) {
       mensaje = "La condena";
@@ -244,7 +244,7 @@ void mouseReleased() {
   objetoSeleccionado = -1;
 }
 
-// Clase para objetos movibles
+// Clase para objetos movibles falta poner la imagenes y cuadras la posicion de los objetos.
 class objetoMov {
   PImage img;
   float x;
