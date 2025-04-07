@@ -218,7 +218,7 @@ void draw() {
     
     // Texto de la historia
     textSize(16);
-    textAlign(LEFT);
+    textAlign(CENTER);
     text(textoHistoria, 50, height - 140, width - 100, 120);
     
     // Instrucción para cerrar
