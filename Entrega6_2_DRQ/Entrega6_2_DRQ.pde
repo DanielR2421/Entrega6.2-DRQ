@@ -20,6 +20,10 @@ boolean escenaSecundaria = false;
 //Esto indica que objeto estoy seleccionando y el -1 indica que no he seleccionado nada
 int objetoSeleccionado = -1;
 
+boolean mostrarTexto = false;
+String textoHistoria = "";
+String tituloHistoria = "";
+
 void setup() {
   size(1280, 800);
   escenaActual = 0;
@@ -251,14 +255,18 @@ class objetoMov {
   float y;
   String texto;
   int escena;
+  String tituloTexto;
+  String textoCompleto;
 
   // Constructor
-  objetoMov(PImage imagen, float posX, float posY, String descripcion, int numEscena) {
+  objetoMov(PImage imagen, float posX, float posY, String descripcion, int numEscena, String titulo, String textoLargo) {
     img = imagen;
     x = posX;
     y = posY;
     texto = descripcion;
     escena = numEscena;
+    tituloTexto = titulo;
+    textoCompleto = textoLargo;
   }
 
   //Mofificar los ultimos 2 para usar el tamaño de las imagenes osea para conservar el orirginal quitar el 100, 100
