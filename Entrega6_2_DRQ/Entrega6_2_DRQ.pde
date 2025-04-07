@@ -94,9 +94,12 @@ void draw() {
    float centroX3 = (width - sc3.width) / 2;
     float centroY3 = (height - sc3.height) / 2;
     
-    if (escenaSecundaria) {
-      image(sc3c, centroX3, centroY3);
-    } else {
+   if (versionEscena == 1) {
+    image(sc1a, centroX3, centroY3);  // Versión A (3A)
+  } 
+  else if (versionEscena == 2) {
+    image(sc2b, centroX3, centroY3);  // Versión B (3B)
+  } else {
       image(sc3, centroX3, centroY3);
     }
   } else if (escenaActual == 3) {
@@ -104,8 +107,8 @@ void draw() {
     float centroX4 = (width - sc4.width) / 2;
     float centroY4 = (height - sc4.height) / 2;
     
-    if (escenaSecundaria) {
-      image(sc4d, centroX4, centroY4);
+    if (versionEscena == 1) {
+    image(sc3c, centroX4, centroY4);  // Versión A (4A)
     } else {
       image(sc4, centroX4, centroY4);
     }
@@ -114,8 +117,8 @@ void draw() {
     float centroX5 = (width - sc5.width) / 2;
     float centroY5 = (height - sc5.height) / 2;
     
-    if (escenaSecundaria) {
-      image(sc5e, centroX5, centroY5);
+   if (versionEscena == 1) {
+    image(sc4d, centroX5, centroY5);  // Versión A (5A)
     } else {
       image(sc5, centroX5, centroY5);
     }
