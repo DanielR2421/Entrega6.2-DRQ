@@ -65,7 +65,7 @@ void setup() {
 void draw() {
   background(0);
 
-  // Dibujar la escena actual
+  //  Incidarores de cuando debe ir organizada la escena actual junto con las escenas secundarias
 
 
   if (escenaActual == 0) {
@@ -95,10 +95,14 @@ void draw() {
     float centroY3 = (height - sc3.height) / 2;
     
    if (versionEscena == 1) {
-    image(sc1a, centroX3, centroY3);  // Versión A (3A)
+    float centroSecX = (width - sc1a.width) / 2;
+    float centroSecY = (height - sc1a.height) / 2; 
+    image(sc1a, centroSecX, centroSecY);  // Versión A (3A)
   } 
   else if (versionEscena == 2) {
-    image(sc2b, centroX3, centroY3);  // Versión B (3B)
+    float centroSecX = (width - sc2b.width) / 2;
+    float centroSecY = (height - sc2b.height) / 2;
+    image(sc2b, centroSecX, centroSecY);  // Versión B (3B)
   } else {
       image(sc3, centroX3, centroY3);
     }
