@@ -14,6 +14,8 @@ objetoMov[] objetoMovible = new objetoMov[7];
 //Verificación para ver si el mouse está moviendo el objeto o se está dejando de dar click izquierdo con el mouse
 boolean arrastrando = false;
 
+boolean escenaSecundaria = false;
+
 //Esto indica que objeto estoy seleccionando y el -1 indica que no he seleccionado nada
 int objetoSeleccionado = -1;
 
@@ -32,7 +34,7 @@ void setup() {
 
   // Cargar las imágenes alternativas
   // Usar las mismas si no hay alternativas
-  sc1a = loadImage("escena1.jpeg");
+  sc1a = loadImage("escena3A.jpeg");
   sc2b = loadImage("escena2.jpeg");
   sc3c = loadImage("escena3.jpeg");
   sc4d = loadImage("escena4.jpeg");
@@ -69,38 +71,73 @@ void draw() {
     //Centrar las imagenes
     float centroX = (width - sc1.width) / 2;
     float centroY = (height - sc1.height) / 2;
-    image(sc1, centroX, centroY);
-
+    
+   // Usar la imagen normal o secundaria para la escena
+    if (escenaSecundaria) {
+      image(sc1a, centroX, centroY);
+    } else {
+      image(sc1, centroX, centroY);
+    }
   } else if (escenaActual == 1) {
     
     float centroX2 = (width - sc2.width) / 2;
     float centroY2 = (height - sc2.height) / 2;
-    image(sc2, centroX2, centroY2);
+    
+    if (escenaSecundaria) {
+      image(sc2b, centroX2, centroY2);
+    } else {
+      image(sc2, centroX2, centroY2);
+    }    
   } else if (escenaActual == 2) {
     
    float centroX3 = (width - sc3.width) / 2;
     float centroY3 = (height - sc3.height) / 2;
-    image(sc3, centroX3, centroY3);
+    
+    if (escenaSecundaria) {
+      image(sc3c, centroX3, centroY3);
+    } else {
+      image(sc3, centroX3, centroY3);
+    }
   } else if (escenaActual == 3) {
     
     float centroX4 = (width - sc4.width) / 2;
     float centroY4 = (height - sc4.height) / 2;
-    image(sc4, centroX4, centroY4);
+    
+    if (escenaSecundaria) {
+      image(sc4d, centroX4, centroY4);
+    } else {
+      image(sc4, centroX4, centroY4);
+    }
   } else if (escenaActual == 4) {
     
     float centroX5 = (width - sc5.width) / 2;
     float centroY5 = (height - sc5.height) / 2;
-    image(sc5, centroX5, centroY5);
+    
+    if (escenaSecundaria) {
+      image(sc5e, centroX5, centroY5);
+    } else {
+      image(sc5, centroX5, centroY5);
+    }
   } else if (escenaActual == 5) {
     
     float centroX6 = (width - sc6.width) / 2;
     float centroY6 = (height - sc6.height) / 2;
-    image(sc6, centroX6, centroY6);
+    
+    if (escenaSecundaria) {
+      image(sc6f, centroX6, centroY6);
+    } else {
+      image(sc6, centroX6, centroY6);
+    }
   } else if (escenaActual == 6) {
     
     float centroX7 = (width - sc7.width) / 2;
     float centroY7 = (height - sc7.height) / 2;
-    image(sc7, centroX7, centroY7);
+    
+    if (escenaSecundaria) {
+      image(sc7g, centroX7, centroY7);
+    } else {
+      image(sc7, centroX7, centroY7);
+    }
   }
 
   // Mostrar objetos interactivos
@@ -129,43 +166,10 @@ void keyPressed() {
     mensaje = "";
   }
 
-  // Mostrar imágenes alternativas
-  switch(escenaActual) {
-  case 0:
-    if (key == 'a') {
-      image(sc1a, 0, 0, width, height);
-    }
-    break;
-  case 1:
-    if (key == 'b') {
-      image(sc2b, 0, 0, width, height);
-    }
-    break;
-  case 2:
-    if (key == 'c') {
-      image(sc3c, 0, 0, width, height);
-    }
-    break;
-  case 3:
-    if (key == 'd') {
-      image(sc4d, 0, 0, width, height);
-    }
-    break;
-  case 4:
-    if (key == 'e') {
-      image(sc5e, 0, 0, width, height);
-    }
-    break;
-  case 5:
-    if (key == 'f') {
-      image(sc6f, 0, 0, width, height);
-    }
-    break;
-  case 6:
-    if (key == 'g') {
-      image(sc7g, 0, 0, width, height);
-    }
-    break;
+// Mostrar imágenes secundarias
+if (key == 'a' || key == 'b' || key == 'c' || 
+      key == 'd' || key == 'e' || key == 'f' || key == 'g') {
+    escenaSecundaria = !escenaSecundaria;  // Esto cambia entre true y false
   }
 }
 
