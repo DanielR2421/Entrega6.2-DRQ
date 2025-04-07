@@ -20,7 +20,8 @@ boolean escenaSecundaria = false;
 //Esto indica que objeto estoy seleccionando y el -1 indica que no he seleccionado nada
 int objetoSeleccionado = -1;
 
-boolean mostrarTexto = false;
+// Variables para mostrar el texto de la historia
+boolean mostrandoTexto = false;
 String textoHistoria = "";
 String tituloHistoria = "";
 
@@ -56,14 +57,37 @@ void setup() {
   imgCarta = loadImage("escena1.jpeg");
   imgPiano = loadImage("escena1.jpeg");
 
-  // Inicializar objetos
-  objetoMovible[0] = new objetoMov(imgReloj, 400, 300, "El reloj del Hotel Metropol", 0);
-  objetoMovible[1] = new objetoMov(imgLibro, 400, 300, "El libro de Montaigne", 1);
-  objetoMovible[2] = new objetoMov(imgLlave, 400, 300, "La llave dorada de Nina", 2);
-  objetoMovible[3] = new objetoMov(imgCarta, 400, 300, "Carta de despedida", 3);
-  objetoMovible[4] = new objetoMov(imgPiano, 400, 300, "El piano de Sofía", 4);
-  objetoMovible[5] = new objetoMov(imgReloj, 400, 300, "El reloj que dejó atrás", 5);
-  objetoMovible[6] = new objetoMov(imgCarta, 400, 300, "Una carta para el futuro", 6);
+  // Inicializar objetos con sus textos correspondientes
+  objetoMovible[0] = new objetoMov(imgReloj, 400, 300, "El reloj del Hotel Metropol", 0, "La condena de Rostov", 
+    "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
+    "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
+    "vida encerrada entre sus muros.");
+    
+  objetoMovible[1] = new objetoMov(imgMenu, 400, 300, "El menú del restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
+    "Rostov recorre los pasillos del Boyarsky, observando la vida de los huéspedes desde su mesa habitual. Arriba, " +
+    "en su pequeño ático, encuentra consuelo en la lectura, la escritura y el silencio, oscilando entre el bullicio y " +
+    "la introspección.");
+    
+  objetoMovible[2] = new objetoMov(imgLlave, 400, 300, "La llave dorada de Nina", 2, "Las amistades – Nina y Anna", 
+    "Nina, una niña con una llave dorada, le muestra al Conde los secretos del Metropol. Años después, Rostov " +
+    "comparte momentos íntimos con Anna Urbanova, una actriz. Sus relaciones le devuelven la cercanía humana y " +
+    "un sentido renovado de pertenencia.");
+    
+  objetoMovible[3] = new objetoMov(imgLibro, 400, 300, "El libro de Montaigne", 3, "La llegada de Sofía", 
+    "Nina regresa para dejarle a su hija Sofía. Rostov, al principio inseguro, aprende a criarla con afecto. " +
+    "Juegan, leen, comparten. La niña transforma su rutina y le da un nuevo propósito.");
+    
+  objetoMovible[4] = new objetoMov(imgPiano, 400, 300, "El piano de Sofía", 4, "La transformación del Conde", 
+    "Sofía, ya joven, toca el piano mientras Rostov la observa con orgullo. El hotel ha perdido su esplendor. " +
+    "Él, antes aristócrata, ahora trabaja en la cocina. Su rol cambia, pero su esencia se fortalece en lo cotidiano.");
+    
+  objetoMovible[5] = new objetoMov(imgCarta, 400, 300, "Carta de despedida", 5, "El plan de escape", 
+    "Rostov ayuda a Sofía a huir a París. Finge su suicidio y desaparece por los pasillos secretos del hotel. " +
+    "Bajo la lluvia, se aleja en la noche, dejando atrás su antigua vida.");
+    
+  objetoMovible[6] = new objetoMov(imgCarta, 400, 300, "Una carta para el futuro", 6, "Final abierto – ¿Es Rostov?", 
+    "En un café rural, un hombre con sombrero bebe té. Un segundo vaso espera sobre la mesa. La escena sugiere " +
+    "que Rostov, al fin, ha encontrado libertad en el anonimato.");
 }
 
 void draw() {
@@ -179,18 +203,49 @@ void draw() {
     textAlign(CENTER);
     text(mensaje, width/2, 50);
   }
+  
+  // Mostrar el texto de la historia si está activo
+  if (mostrandoTexto) {
+    // Fondo semi-transparente para el texto
+    fill(0, 0, 0, 200);
+    rect(0, height - 200, width, 200);
+    
+    // Título
+    fill(255);
+    textSize(24);
+    textAlign(CENTER);
+    text(tituloHistoria, width/2, height - 170);
+    
+    // Texto de la historia
+    textSize(16);
+    textAlign(LEFT);
+    text(textoHistoria, 50, height - 140, width - 100, 120);
+    
+    // Instrucción para cerrar
+    textSize(14);
+    textAlign(RIGHT);
+    text("Presiona ESPACIO para cerrar", width - 50, height - 20);
+  }
 }
 
 void keyPressed() {
+  // Cerrar el texto si está mostrándose
+  if (mostrandoTexto && key == ' ') {
+    mostrandoTexto = false;
+    return;
+  }
+  
   // Para moverse entre escenas
   if (keyCode == RIGHT) {
     escenaActual = (escenaActual + 1) % 7;
     mensaje = "";
     versionEscena = 0; // Resetear al cambiar de escena
+    mostrandoTexto = false; // Ocultar texto al cambiar de escena
   } else if (keyCode == LEFT) {
     escenaActual = (escenaActual + 6) % 7;
     mensaje = "";
     versionEscena = 0; // Resetear al cambiar de escena
+    mostrandoTexto = false; // Ocultar texto al cambiar de escena
   }
 
   // Mostrar imágenes secundarias
@@ -204,6 +259,12 @@ void keyPressed() {
 }
 
 void mousePressed() {
+  // Si está mostrando texto, ocultarlo al hacer clic
+  if (mostrandoTexto) {
+    mostrandoTexto = false;
+    return;
+  }
+  
   // Mensaje cuando se hace clic izquierdo, toca cambiarlo para dar contexto de la historia
   if (mouseButton == LEFT) {
     if (escenaActual == 0) {
@@ -231,6 +292,9 @@ void mousePressed() {
         objetoSeleccionado = i;
         arrastrando = true;
         mensaje = objetoMovible[i].texto;
+        
+        // Mostrar texto de la historia al hacer clic en el objeto
+        mostrarTextoHistoria(i);
       }
     }
   }
@@ -248,7 +312,14 @@ void mouseReleased() {
   objetoSeleccionado = -1;
 }
 
-// Clase para objetos movibles falta poner la imagenes y cuadras la posicion de los objetos.
+// Función para mostrar el texto de la historia
+void mostrarTextoHistoria(int indiceObjeto) {
+  mostrandoTexto = true;
+  tituloHistoria = objetoMovible[indiceObjeto].tituloTexto;
+  textoHistoria = objetoMovible[indiceObjeto].textoCompleto;
+}
+
+// Clase para objetos movibles
 class objetoMov {
   PImage img;
   float x;
@@ -269,7 +340,6 @@ class objetoMov {
     textoCompleto = textoLargo;
   }
 
-  //Mofificar los ultimos 2 para usar el tamaño de las imagenes osea para conservar el orirginal quitar el 100, 100
   void display() {
     image(img, x, y, 100, 100);
   }
