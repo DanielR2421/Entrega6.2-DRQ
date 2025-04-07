@@ -58,7 +58,7 @@ void setup() {
   imgPiano = loadImage("escena1.jpeg");
 
   // Inicializar objetos con sus textos correspondientes
-  objetoMovible[0] = new objetoMov(imgReloj, 400, 300, "El reloj del Hotel Metropol", 0, "La condena de Rostov", 
+  objetoMovible[0] = new objetoMov(imgReloj, 400, 300, "El reloj del Hotel Metropol", 0, "La Condena del Conde Rostov", 
     "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
     "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
     "vida encerrada entre sus muros.");
@@ -226,12 +226,13 @@ void draw() {
     textAlign(RIGHT);
     text("Presiona ESPACIO para cerrar", width - 50, height - 20);
     
-    // Instrucción para cambiar
+    // Instrucciones para cambiar de escena
     textSize(14);
     textAlign(LEFT);
     text("Presiona FLECHA DERECHA para AVANZAR a la siguiente escena", width - 1230, height - 40);
     text("O FLECHA IZQUIERDA para RETROCEDER a la anterior", width - 1230, height - 20);
     
+    // Instrucciones para cambiar de escena
     textSize(12);
     textAlign(CENTER);
     text("Presiona 'a','b','c'para ver las escenas secundarias", width - 640, height - 40);
