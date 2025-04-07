@@ -1,4 +1,5 @@
 int escenaActual;
+int versionEscena = 0;
 String mensaje = "";
 
 //Imagenes de fondo de las diferentes escenas
@@ -35,12 +36,12 @@ void setup() {
   // Cargar las imágenes alternativas
   // Usar las mismas si no hay alternativas
   sc1a = loadImage("escena3A.jpeg");
-  sc2b = loadImage("escena2.jpeg");
-  sc3c = loadImage("escena3.jpeg");
-  sc4d = loadImage("escena4.jpeg");
-  sc5e = loadImage("escena5.jpeg");
-  sc6f = loadImage("escena6.jpeg");
-  sc7g = loadImage("escena7.jpeg");
+  sc2b = loadImage("escena3B.jpeg");
+  sc3c = loadImage("escena4A.jpeg");
+  sc4d = loadImage("escena5A.jpeg");
+  sc5e = loadImage("escena6A.jpeg");
+  sc6f = loadImage("escena6B.jpeg");
+  sc7g = loadImage("escena6C.jpeg");
 
   // Cargar imágenes de objetos
   imgOrden = loadImage("escena1.jpeg");  // Usar escenas como temporales
@@ -161,14 +162,19 @@ void keyPressed() {
   if (keyCode == RIGHT) {
     escenaActual = (escenaActual + 1) % 7;
     mensaje = "";
+    versionEscena = 0; // Resetear al cambiar de escena
+    
   } else if (keyCode == LEFT) {
     escenaActual = (escenaActual + 6) % 7;
     mensaje = "";
+    versionEscena = 0; // Resetear al cambiar de escena
   }
 
 // Mostrar imágenes secundarias
-if (key == 'a' || key == 'b' || key == 'c' || 
-      key == 'd' || key == 'e' || key == 'f' || key == 'g') {
+ if ((escenaActual == 2 && (key == 'a' || key == 'b')) ||    // 3A, 3B para escena 2
+      (escenaActual == 3 && key == 'a') ||                    // 4A para escena 3
+      (escenaActual == 4 && key == 'a') ||                    // 5A para escena 4
+      (escenaActual == 5 && (key == 'a' || key == 'b' || key == 'c'))) {  // 6A, 6B, 6C para escena 5
     escenaSecundaria = !escenaSecundaria;  // Esto cambia entre true y false
   }
 }
