@@ -57,35 +57,37 @@ void setup() {
   imgTiquete = loadImage("Tiquete_de_tren.png");
   imgManzana = loadImage("Manzana.png");
 
-  // Inicializar objetos con sus textos correspondientes de acuerdo con su clase
-  objetoMovible[0] = new objetoMov(imgMartillo, 400, 300, "El reloj del Hotel Metropol", 0, "La Condena del Conde Rostov", 
+  /* Inicializar objetos con sus textos correspondientes de acuerdo con su clase, los mensajes se muestran cuando se hace clic izquierdo, 
+  toca cambiarlo para dar contexto de la historia*/
+  
+  objetoMovible[0] = new objetoMov(imgMartillo, 400, 300, "El Juicio", 0, "La Condena del Conde Alexander Rostov", 
     "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
     "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
     "vida encerrada entre sus muros.");
     
-  objetoMovible[1] = new objetoMov(imgCopa, 400, 300, "El menú del restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
+  objetoMovible[1] = new objetoMov(imgCopa, 400, 300, "Restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
     "Rostov recorre los pasillos del Boyarsky, observando la vida de los huéspedes desde su mesa habitual. Arriba, " +
     "en su pequeño ático, encuentra consuelo en la lectura, la escritura y el silencio, oscilando entre el bullicio y " +
     "la introspección.");
     
-  objetoMovible[2] = new objetoMov(imgLlave, 400, 300, "La llave dorada de Nina", 2, "Las amistades – Nina y Anna", 
+  objetoMovible[2] = new objetoMov(imgLlave, 400, 300, "Pasadizos del Hotel", 2, "Las amistades", 
     "Nina, una niña con una llave dorada, le muestra al Conde los secretos del Metropol. Años después, Rostov " +
     "comparte momentos íntimos con Anna Urbanova, una actriz. Sus relaciones le devuelven la cercanía humana y " +
     "un sentido renovado de pertenencia.");
     
-  objetoMovible[3] = new objetoMov(imgCepillo, 400, 300, "El libro de Montaigne", 3, "La llegada de Sofía", 
+  objetoMovible[3] = new objetoMov(imgCepillo, 400, 300, "Cuidado de Sofía", 3, "La llegada de Sofía", 
     "Nina regresa para dejarle a su hija Sofía. Rostov, al principio inseguro, aprende a criarla con afecto. " +
     "Juegan, leen, comparten. La niña transforma su rutina y le da un nuevo propósito.");
     
-  objetoMovible[4] = new objetoMov(imgReloj, 400, 300, "El piano de Sofía", 4, "La transformación del Conde", 
+  objetoMovible[4] = new objetoMov(imgReloj, 400, 300, "Paso del Tiempo", 4, "La transformación del Conde", 
     "Sofía, ya joven, toca el piano mientras Rostov la observa con orgullo. El hotel ha perdido su esplendor. " +
     "Él, antes aristócrata, ahora trabaja en la cocina. Su rol cambia, pero su esencia se fortalece en lo cotidiano.");
     
-  objetoMovible[5] = new objetoMov(imgTiquete, 400, 300, "Carta de despedida", 5, "El plan de escape", 
+  objetoMovible[5] = new objetoMov(imgTiquete, 400, 300, "Busqueda de mejor vida", 5, "El plan de escape", 
     "Rostov ayuda a Sofía a huir a París. Finge su suicidio y desaparece por los pasillos secretos del hotel. " +
     "Bajo la lluvia, se aleja en la noche, dejando atrás su antigua vida.");
     
-  objetoMovible[6] = new objetoMov(imgManzana, 400, 300, "Una carta para el futuro", 6, "Final abierto – ¿Es Rostov?", 
+  objetoMovible[6] = new objetoMov(imgManzana, 400, 300, "Fin", 6, "¿Es Rostov?", 
     "En un café rural, un hombre con sombrero bebe té. Un segundo vaso espera sobre la mesa. La escena sugiere " +
     "que Rostov, al fin, ha encontrado libertad en el anonimato.");
 }
@@ -270,32 +272,12 @@ void keyPressed() {
 }
 
 void mousePressed() {
-  // Si está mostrando texto, ocultarlo al hacer clic
+  // Si está mostrando texto, ocultarlo al hacer click
   if (mostrarTexto) {
     mostrarTexto = false;
     return;
-  }
-  
-  // Mensaje cuando se hace clic izquierdo, toca cambiarlo para dar contexto de la historia
-  if (mouseButton == LEFT) {
-    if (escenaActual == 0) {
-      mensaje = "La condena";
-    } else if (escenaActual == 1) {
-      mensaje = "Vida en el hotel";
-    } else if (escenaActual == 2) {
-      mensaje = "Amistades";
-    } else if (escenaActual == 3) {
-      mensaje = "Sofía";
-    } else if (escenaActual == 4) {
-      mensaje = "Transformación";
-    } else if (escenaActual == 5) {
-      mensaje = "Escape";
-    } else if (escenaActual == 6) {
-      mensaje = "Final";
-    }
-  }
-
-  // Verificar si se seleccionó un objeto
+  }  
+  // Verificar si se seleccionó un objeto; esto por alguna razon puede fallar a veces
   for (int i = 0; i < 7; i++) {
     if (objetoMovible[i].escena == escenaActual) {
       if (mouseX > objetoMovible[i].x && mouseX < objetoMovible[i].x + 100 &&
@@ -351,7 +333,7 @@ class objetoMov {
     textoCompleto = textoLargo;
   }
 
-//Tamaño del objeto interactivo
+//Tamaño y posición del objeto del objeto interactivo
   void display() {
     image(img, x, y);
   }
