@@ -71,35 +71,35 @@ void setup() {
   objetoMovible[2] = new ObjetoLlave(imgLlave, "Pasadizos del Hotel", 2, "Las amistades", 
     "Nina, una niña con una llave dorada, le muestra al Conde los secretos del Metropol. Años después, Rostov " +
     "comparte momentos íntimos con Anna Urbanova, una actriz. Sus relaciones le devuelven la cercanía humana y " +
-    "un sentido renovado de pertenencia.");
+    "reafirman su lugar en el hotel el cual él empieza a aceptar.");
     
   objetoMovible[3] = new ObjetoCepillo(imgCepillo, "Cuidado de Sofía", 3, "La llegada de Sofía", 
     "Nina regresa para dejarle a su hija Sofía. Rostov, al principio inseguro, aprende a criarla con afecto. " +
-    "Juegan, leen, comparten. La niña transforma su rutina y le da un nuevo propósito.");
+    "Juegan, leen, comparten. La niña transforma su rutina y le da un nuevo propósito al noble.");
     
   objetoMovible[4] = new ObjetoReloj(imgReloj, "Paso del Tiempo", 4, "La transformación del Conde", 
-    "Sofía, ya joven, toca el piano mientras Rostov la observa con orgullo. El hotel ha perdido su esplendor. " +
-    "Él, antes aristócrata, ahora trabaja en la cocina. Su rol cambia, pero su esencia se fortalece en lo cotidiano.");
+    "Sofía, ya es mayor y el Conde toca el piano para distraerse. El hotel ha perdido  parte su esplendor. " +
+    "Él, antes aristócrata, ahora ayuda en la cocina. Su nobleza cambia de ser solo un titulo a una forma de ser ");
     
   objetoMovible[5] = new ObjetoTiquete(imgTiquete, "Busqueda de mejor vida", 5, "El plan de escape", 
-    "Rostov ayuda a Sofía a huir a París. Finge su suicidio y desaparece por los pasillos secretos del hotel. " +
+    "El Conde ayuda a Sofía a huir a París. Finge su suicidio y desaparece por los pasillos secretos del hotel. " +
     "Bajo la lluvia, se aleja en la noche, dejando atrás su antigua vida.");
     
   objetoMovible[6] = new ObjetoManzana(imgManzana, "Fin", 6, "¿Es Rostov?", 
-    "En un café rural, un hombre con sombrero bebe té. Un segundo vaso espera sobre la mesa. La escena sugiere " +
-    "que Rostov, al fin, ha encontrado libertad en el anonimato.");
+    "En campo rural ruso, un hombre con sombrero bebe té. ¿Esta esperando a alguien?" +
+    "¿Acaso esta persona ha encontrado la libertad?");
 }
 
 void draw() {
   background(0);
-  //  Incidarores de cuando debe ir organizada la escena actual junto con las escenas secundarias
+  //  La mayoría de este codigo del void draw indica como deben ir organizada las escenas principales junto con las escenas secundarias
   
   if (escenaActual == 0) {
     //Centrar las imagenes con las variables designadas para representar o una escena principal o una escena secundaria
     float centroX = (width - sc1.width) / 2;
     float centroY = (height - sc1.height) / 2;
 
-    // Usar la imagen normal o secundaria para la escena
+    // Uso de la imagen normal o secundaria para la escena; realmente toda esta cantidad de codigo sirve para centrar las imagenes de las escenas
     if (escenaSecundaria) {
       image(sc1a, centroX, centroY); // esto es para que aparezca la imagen
     } else {
@@ -187,14 +187,14 @@ void draw() {
     }
   }
 
-  // Mostrar objetos interactivos
+  // Mostrar los objetos interactivos de las distintas escenas, el usuario tenda que 
   for (int i = 0; i < 7; i++) {
     if (objetoMovible[i].escena == escenaActual) {
       objetoMovible[i].display();
     }
   }
 
-  // Mostrar mensaje
+  // Mostrar mensaje especifico de cada escena
   if (mensaje != "") {
     fill(255);
     textSize(24);
@@ -202,24 +202,24 @@ void draw() {
     text(mensaje, width/2, 50);
   }
   
-  // Mostrar el texto de la historia si está activo
+  // Mostrar el texto de la historias
   if (mostrarTexto) {
-    // Fondo semi-transparente para el texto
+    // Fondo para poder leer el texto
     fill(0, 0, 0, 200);
     rect(0, height - 200, width, 200);
     
-    // Título
+    // Título de la escena
     fill(255);
     textSize(28);
     textAlign(CENTER);
     text(tituloHistoria, width/2, height - 170);
     
-    // Texto de la historia
+    // Texto de la escena
     textSize(20);
     textAlign(CENTER);
     text(textoHistoria, 50, height - 140, width - 100, 120);
     
-    // Instrucción para cerrar
+    // Instrucción para cerrar la información de la escena
     textSize(14);
     textAlign(RIGHT);
     text("Presiona ESPACIO para cerrar", width - 50, height - 20);
@@ -233,12 +233,13 @@ void draw() {
     // Instrucciones para cambiar de escena
     textSize(12);
     textAlign(CENTER);
+    text("Haz click en los objeto fuera de lugar", width - 640, height - 60);
     text("Presiona 'a','b','c'para ver las escenas secundarias", width - 640, height - 40);
     text("Disponible en las escenas 3, 4, 5, 6", width - 640, height - 20); 
     
   }
 }
-
+//Este evento perimte cambiar de escena utilizando las flechas, lo tricky que no pense muy bien y me di cuenta tarde fue que las instrucciones solo se ven tras activar el evento del void mousePressed 
 void keyPressed() {
   // Cerrar el texto si está mostrándose
   if (mostrarTexto && key == ' ') {
@@ -246,7 +247,7 @@ void keyPressed() {
     return;
   }
   
-  // Para moverse entre escenas
+  // Codigo para moverse entre escenas
   if (keyCode == RIGHT) {
     escenaActual = (escenaActual + 1) % 7;
     mensaje = "";
@@ -259,7 +260,7 @@ void keyPressed() {
     mostrarTexto = false; // Ocultar texto al cambiar de escena
   }
 
-  // Mostrar imágenes secundarias
+  // Aca se muestra como activar las escenas secundarias
   if (key == 'a') {
     versionEscena = (versionEscena == 1) ? 0 : 1;  // Alterna entre Escena principal y versión A
   } else if (key == 'b') {
@@ -268,14 +269,14 @@ void keyPressed() {
     versionEscena = (versionEscena == 3) ? 0 : 3;  // Alterna entre Escena principal y versión C
   }
 }
-
+//Este es el evento mas importante del codigo ya que con el se activa toda la información presente y necesaria para entender las escenas siguiente (las instrucciones tambien aparecena aca
 void mousePressed() {
-  // Si está mostrando texto, ocultarlo al hacer click
+  // Si está mostrando texto, tras hacer click se oculta
   if (mostrarTexto) {
     mostrarTexto = false;
     return;
   }  
-  // Verificar si se seleccionó un objeto; esto por alguna razon puede fallar a veces
+  // Verifica si se seleccionó un objeto; esto por alguna razon puede fallar a veces hay algo que suele interferir con el movimiento de los objetos pero tras hacer click en ellos se soluciona
   for (int i = 0; i < 7; i++) {
     if (objetoMovible[i].escena == escenaActual) {
       if (mouseX > objetoMovible[i].x && mouseX < objetoMovible[i].x + 100 &&
@@ -284,26 +285,27 @@ void mousePressed() {
         arrastrando = true;
         mensaje = objetoMovible[i].texto;
         
-        // Mostrar texto de la historia al hacer clic en el objeto
+        // Mostrar texto de la historia al hacer clic en el objeto; eso me toco investigarlo porque no supe como hacerlo con la información que tenia
         mostrarTextoHistoria(i);
       }
     }
   }
 }
 
+//Este evento perimite que uno pueda mover los objetos clave para ver la información de la escena no es muy necesaria pero me parecio chevere
 void mouseDragged() {
   if (arrastrando && objetoSeleccionado >= 0) {
     objetoMovible[objetoSeleccionado].x = mouseX - 50;
     objetoMovible[objetoSeleccionado].y = mouseY - 50;
   }
 }
-
+//Este evento permite solar el objeto clave de las escenas en algun lugar del canvas
 void mouseReleased() {
   arrastrando = false;
   objetoSeleccionado = -1;
 }
 
-// Función para mostrar el texto de la historia
+// Evento para mostrar el texto de la historia; este tipo de indice que trckea la escena me toco investigarlo y buscar como funcionaba porque sinceramente no sabia que los indices se podian utilizar para eso 
 void mostrarTextoHistoria(int indiceObjeto) {
   mostrarTexto = true;
   tituloHistoria = objetoMovible[indiceObjeto].tituloTexto;
@@ -337,7 +339,7 @@ class objetoMov {
   }
 }
 
-// Clases extendidas para posicionar los objetos - añadidas al final del código como en el ejemplo original
+// Clases extendidas para posicionar los objetos en diferenctes posiciones
 class ObjetoMartillo extends objetoMov {
   ObjetoMartillo(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 1050, 150, descripcion, numEscena, titulo, textoLargo);
