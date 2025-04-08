@@ -360,7 +360,7 @@ class ObjetoLlave extends objetoMov {
 
 class ObjetoCepillo extends objetoMov {
   ObjetoCepillo(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
-    super(imagen, 180, 150, descripcion, numEscena, titulo, textoLargo);
+    super(imagen, 315, 485, descripcion, numEscena, titulo, textoLargo);
   }
 }
 
