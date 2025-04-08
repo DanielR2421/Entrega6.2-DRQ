@@ -58,34 +58,34 @@ void setup() {
   imgManzana = loadImage("Manzana.png");
 
   // Inicializar objetos con sus clases específicas para posiciones personalizadas
-  objetoMovible[0] = new ObjetoMartillo(imgMartillo, "El Juicio", 0, "La Condena del Conde Alexander Rostov", 
+  objetoMovible[0] = new ObjetoMartillo(imgMartillo, "UN CABALLERO EN MOSCÚ", 0, "La Condena del Conde Alexander Rostov",
     "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
     "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
     "vida encerrada entre sus muros.");
-    
-  objetoMovible[1] = new ObjetoCopa(imgCopa, "Restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
+
+  objetoMovible[1] = new ObjetoCopa(imgCopa, "Restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol",
     "Rostov recorre los pasillos del Boyarsky, observando la vida de los huéspedes desde su mesa habitual. Arriba, " +
     "en su pequeño ático, encuentra consuelo en la lectura, la escritura y el silencio, oscilando entre el bullicio y " +
     "la introspección.");
-    
-  objetoMovible[2] = new ObjetoLlave(imgLlave, "Pasadizos del Hotel", 2, "Las amistades", 
+
+  objetoMovible[2] = new ObjetoLlave(imgLlave, "Pasadizos del Hotel", 2, "Las amistades",
     "Nina, una niña con una llave dorada, le muestra al Conde los secretos del Metropol. Años después, Rostov " +
     "comparte momentos íntimos con Anna Urbanova, una actriz. Sus relaciones le devuelven la cercanía humana y " +
     "reafirman su lugar en el hotel el cual él empieza a aceptar.");
-    
-  objetoMovible[3] = new ObjetoCepillo(imgCepillo, "Cuidado de Sofía", 3, "La llegada de Sofía", 
+
+  objetoMovible[3] = new ObjetoCepillo(imgCepillo, "Cuidado de Sofía", 3, "La llegada de Sofía",
     "Nina regresa para dejarle a su hija Sofía. Rostov, al principio inseguro, aprende a criarla con afecto. " +
     "Juegan, leen, comparten. La niña transforma su rutina y le da un nuevo propósito al noble.");
-    
-  objetoMovible[4] = new ObjetoReloj(imgReloj, "Paso del Tiempo", 4, "La transformación del Conde", 
+
+  objetoMovible[4] = new ObjetoReloj(imgReloj, "Paso del Tiempo", 4, "La transformación del Conde",
     "Sofía, ya es mayor y el Conde toca el piano para distraerse. El hotel ha perdido  parte su esplendor. " +
     "Él, antes aristócrata, ahora ayuda en la cocina. Su nobleza cambia de ser solo un titulo a una forma de ser ");
-    
-  objetoMovible[5] = new ObjetoTiquete(imgTiquete, "Busqueda de mejor vida", 5, "El plan de escape", 
+
+  objetoMovible[5] = new ObjetoTiquete(imgTiquete, "Busqueda de mejor vida", 5, "El plan de escape",
     "El Conde ayuda a Sofía a huir a París. Finge su suicidio y desaparece por los pasillos secretos del hotel. " +
     "Bajo la lluvia, se aleja en la noche, dejando atrás su antigua vida.");
-    
-  objetoMovible[6] = new ObjetoManzana(imgManzana, "Fin", 6, "¿Es Rostov?", 
+
+  objetoMovible[6] = new ObjetoManzana(imgManzana, "Fin", 6, "¿Es Rostov?",
     "En campo rural ruso, un hombre con sombrero bebe té. ¿Esta esperando a alguien?" +
     "¿Acaso esta persona ha encontrado la libertad?");
 }
@@ -93,12 +93,16 @@ void setup() {
 void draw() {
   background(0);
   //  La mayoría de este codigo del void draw indica como deben ir organizada las escenas principales junto con las escenas secundarias
-  
+
   if (escenaActual == 0) {
     //Centrar las imagenes con las variables designadas para representar o una escena principal o una escena secundaria
     float centroX = (width - sc1.width) / 2;
     float centroY = (height - sc1.height) / 2;
-
+    
+    //Primeras instrucciones porque si no nadie va a entender como es la dinamica de la historia
+    textSize(14);
+    textAlign(CENTER);
+    text("Haz click en los objetos fuera de lugar", width - 640, height - 60);
     // Uso de la imagen normal o secundaria para la escena; realmente toda esta cantidad de codigo sirve para centrar las imagenes de las escenas
     if (escenaSecundaria) {
       image(sc1a, centroX, centroY); // esto es para que aparezca la imagen
@@ -187,7 +191,7 @@ void draw() {
     }
   }
 
-  // Mostrar los objetos interactivos de las distintas escenas, el usuario tenda que 
+  // Mostrar los objetos interactivos de las distintas escenas, el usuario tenda que
   for (int i = 0; i < 7; i++) {
     if (objetoMovible[i].escena == escenaActual) {
       objetoMovible[i].display();
@@ -201,52 +205,51 @@ void draw() {
     textAlign(CENTER);
     text(mensaje, width/2, 50);
   }
-  
+
   // Mostrar el texto de la historias
   if (mostrarTexto) {
     // Fondo para poder leer el texto
     fill(0, 0, 0, 200);
     rect(0, height - 200, width, 200);
-    
+
     // Título de la escena
     fill(255);
     textSize(28);
     textAlign(CENTER);
     text(tituloHistoria, width/2, height - 170);
-    
+
     // Texto de la escena
     textSize(20);
     textAlign(CENTER);
     text(textoHistoria, 50, height - 140, width - 100, 120);
-    
+
     // Instrucción para cerrar la información de la escena
-    textSize(14);
+    textSize(12);
     textAlign(RIGHT);
     text("Presiona ESPACIO para cerrar", width - 50, height - 20);
-    
+
     // Instrucciones para cambiar de escena
-    textSize(14);
+    textSize(12);
     textAlign(LEFT);
     text("Presiona FLECHA DERECHA para AVANZAR a la siguiente escena", width - 1230, height - 40);
     text("O FLECHA IZQUIERDA para RETROCEDER a la anterior", width - 1230, height - 20);
-    
+
     // Instrucciones para cambiar de escena
-    textSize(12);
+    textSize(14);
     textAlign(CENTER);
-    text("Haz click en los objeto fuera de lugar", width - 640, height - 60);
+    text("Haz click en los objetos fuera de lugar", width - 640, height - 60);
     text("Presiona 'a','b','c'para ver las escenas secundarias", width - 640, height - 40);
-    text("Disponible en las escenas 3, 4, 5, 6", width - 640, height - 20); 
-    
+    text("Disponible en las escenas 3, 4, 5, 6", width - 640, height - 20);
   }
 }
-//Este evento perimte cambiar de escena utilizando las flechas, lo tricky que no pense muy bien y me di cuenta tarde fue que las instrucciones solo se ven tras activar el evento del void mousePressed 
+//Este evento perimte cambiar de escena utilizando las flechas, lo tricky que no pense muy bien y me di cuenta tarde fue que las instrucciones solo se ven tras activar el evento del void mousePressed
 void keyPressed() {
   // Cerrar el texto si está mostrándose
   if (mostrarTexto && key == ' ') {
     mostrarTexto = false;
     return;
   }
-  
+
   // Codigo para moverse entre escenas
   if (keyCode == RIGHT) {
     escenaActual = (escenaActual + 1) % 7;
@@ -275,7 +278,7 @@ void mousePressed() {
   if (mostrarTexto) {
     mostrarTexto = false;
     return;
-  }  
+  }
   // Verifica si se seleccionó un objeto; esto por alguna razon puede fallar a veces hay algo que suele interferir con el movimiento de los objetos pero tras hacer click en ellos se soluciona
   for (int i = 0; i < 7; i++) {
     if (objetoMovible[i].escena == escenaActual) {
@@ -284,7 +287,7 @@ void mousePressed() {
         objetoSeleccionado = i;
         arrastrando = true;
         mensaje = objetoMovible[i].texto;
-        
+
         // Mostrar texto de la historia al hacer clic en el objeto; eso me toco investigarlo porque no supe como hacerlo con la información que tenia
         mostrarTextoHistoria(i);
       }
@@ -305,7 +308,7 @@ void mouseReleased() {
   objetoSeleccionado = -1;
 }
 
-// Evento para mostrar el texto de la historia; este tipo de indice que trckea la escena me toco investigarlo y buscar como funcionaba porque sinceramente no sabia que los indices se podian utilizar para eso 
+// Evento para mostrar el texto de la historia; este tipo de indice que trckea la escena me toco investigarlo y buscar como funcionaba porque sinceramente no sabia que los indices se podian utilizar para eso
 void mostrarTextoHistoria(int indiceObjeto) {
   mostrarTexto = true;
   tituloHistoria = objetoMovible[indiceObjeto].tituloTexto;
