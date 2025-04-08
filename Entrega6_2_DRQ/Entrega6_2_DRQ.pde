@@ -49,7 +49,7 @@ void setup() {
   sc7g = loadImage("escena6C.jpeg");
 
   // Cargar imágenes de objetos
-  imgMartillo = loadImage("Matrillo_de_juez.png");  // Usar escenas como temporales
+  imgMartillo = loadImage("Matrillo_de_juez.png");
   imgCopa = loadImage("Copa_de_vino.png");
   imgLlave = loadImage("Llave_dorada.png");
   imgCepillo = loadImage("Cepillo_de_peinar.png");
@@ -57,37 +57,35 @@ void setup() {
   imgTiquete = loadImage("Tiquete_de_tren.png");
   imgManzana = loadImage("Manzana.png");
 
-  /* Inicializar objetos con sus textos correspondientes de acuerdo con su clase, los mensajes se muestran cuando se hace clic izquierdo, 
-  toca cambiarlo para dar contexto de la historia*/
-  
-  objetoMovible[0] = new objetoMov(imgMartillo, 400, 300, "El Juicio", 0, "La Condena del Conde Alexander Rostov", 
+  // Inicializar objetos con sus clases específicas para posiciones personalizadas
+  objetoMovible[0] = new ObjetoMartillo(imgMartillo, "El Juicio", 0, "La Condena del Conde Alexander Rostov", 
     "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
     "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
     "vida encerrada entre sus muros.");
     
-  objetoMovible[1] = new objetoMov(imgCopa, 400, 300, "Restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
+  objetoMovible[1] = new ObjetoCopa(imgCopa, "Restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
     "Rostov recorre los pasillos del Boyarsky, observando la vida de los huéspedes desde su mesa habitual. Arriba, " +
     "en su pequeño ático, encuentra consuelo en la lectura, la escritura y el silencio, oscilando entre el bullicio y " +
     "la introspección.");
     
-  objetoMovible[2] = new objetoMov(imgLlave, 400, 300, "Pasadizos del Hotel", 2, "Las amistades", 
+  objetoMovible[2] = new ObjetoLlave(imgLlave, "Pasadizos del Hotel", 2, "Las amistades", 
     "Nina, una niña con una llave dorada, le muestra al Conde los secretos del Metropol. Años después, Rostov " +
     "comparte momentos íntimos con Anna Urbanova, una actriz. Sus relaciones le devuelven la cercanía humana y " +
     "un sentido renovado de pertenencia.");
     
-  objetoMovible[3] = new objetoMov(imgCepillo, 400, 300, "Cuidado de Sofía", 3, "La llegada de Sofía", 
+  objetoMovible[3] = new ObjetoCepillo(imgCepillo, "Cuidado de Sofía", 3, "La llegada de Sofía", 
     "Nina regresa para dejarle a su hija Sofía. Rostov, al principio inseguro, aprende a criarla con afecto. " +
     "Juegan, leen, comparten. La niña transforma su rutina y le da un nuevo propósito.");
     
-  objetoMovible[4] = new objetoMov(imgReloj, 400, 300, "Paso del Tiempo", 4, "La transformación del Conde", 
+  objetoMovible[4] = new ObjetoReloj(imgReloj, "Paso del Tiempo", 4, "La transformación del Conde", 
     "Sofía, ya joven, toca el piano mientras Rostov la observa con orgullo. El hotel ha perdido su esplendor. " +
     "Él, antes aristócrata, ahora trabaja en la cocina. Su rol cambia, pero su esencia se fortalece en lo cotidiano.");
     
-  objetoMovible[5] = new objetoMov(imgTiquete, 400, 300, "Busqueda de mejor vida", 5, "El plan de escape", 
+  objetoMovible[5] = new ObjetoTiquete(imgTiquete, "Busqueda de mejor vida", 5, "El plan de escape", 
     "Rostov ayuda a Sofía a huir a París. Finge su suicidio y desaparece por los pasillos secretos del hotel. " +
     "Bajo la lluvia, se aleja en la noche, dejando atrás su antigua vida.");
     
-  objetoMovible[6] = new objetoMov(imgManzana, 400, 300, "Fin", 6, "¿Es Rostov?", 
+  objetoMovible[6] = new ObjetoManzana(imgManzana, "Fin", 6, "¿Es Rostov?", 
     "En un café rural, un hombre con sombrero bebe té. Un segundo vaso espera sobre la mesa. La escena sugiere " +
     "que Rostov, al fin, ha encontrado libertad en el anonimato.");
 }
@@ -333,8 +331,51 @@ class objetoMov {
     textoCompleto = textoLargo;
   }
 
-//Tamaño y posición del objeto del objeto interactivo
+  //Tamaño y posición del objeto del objeto interactivo
   void display() {
     image(img, x, y);
+  }
+}
+
+// Clases extendidas para posicionar los objetos - añadidas al final del código como en el ejemplo original
+class ObjetoMartillo extends objetoMov {
+  ObjetoMartillo(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
+    super(imagen, 1050, 150, descripcion, numEscena, titulo, textoLargo);
+  }
+}
+
+class ObjetoCopa extends objetoMov {
+  ObjetoCopa(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
+    super(imagen, 250, 400, descripcion, numEscena, titulo, textoLargo);
+  }
+}
+
+class ObjetoLlave extends objetoMov {
+  ObjetoLlave(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
+    super(imagen, 640, 600, descripcion, numEscena, titulo, textoLargo);
+  }
+}
+
+class ObjetoCepillo extends objetoMov {
+  ObjetoCepillo(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
+    super(imagen, 180, 150, descripcion, numEscena, titulo, textoLargo);
+  }
+}
+
+class ObjetoReloj extends objetoMov {
+  ObjetoReloj(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
+    super(imagen, 950, 550, descripcion, numEscena, titulo, textoLargo);
+  }
+}
+
+class ObjetoTiquete extends objetoMov {
+  ObjetoTiquete(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
+    super(imagen, 640, 150, descripcion, numEscena, titulo, textoLargo);
+  }
+}
+
+class ObjetoManzana extends objetoMov {
+  ObjetoManzana(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
+    super(imagen, 640, 400, descripcion, numEscena, titulo, textoLargo);
   }
 }
