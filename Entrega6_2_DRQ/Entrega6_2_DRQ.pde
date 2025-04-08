@@ -1,9 +1,15 @@
+//Para simplificar la historia de "A Gentleman in Moscow" por Amor Towels (ya que es una novela como de 500 paginas) al igual que generar las imágenes use inteligencia articificial, 
+//Me basé inicialmente en el pseudocodigo de la entrega anterior pero no funciono del todo por lo que hubo que hacer gran cantidad de modificaciones pero me base en el en su gran mayoría, sobre todo en su estructura
+//Tuve que investigar como funcionaban bien distintos eventos como en void mouseDragged y pressed para que pudieran tener mas de una función para volver la historia mas interactiva
+
+//Variables clave para las transiciones y escenas distintas
 int escenaActual;
 int versionEscena = 0;
 String mensaje = "";
 
-//Imagenes de fondo de las diferentes escenas
+//Imagenes de fondo de las diferentes escenas principales
 PImage sc1, sc2, sc3, sc4, sc5, sc6, sc7;
+//Imagenes de fondo de las diferentes escenas Secundarias
 PImage sc1a, sc2b, sc3c, sc4d, sc5e, sc6f, sc7g;
 
 //Imágenes de objetos
@@ -12,7 +18,7 @@ PImage imgMartillo, imgCopa, imgLlave, imgCepillo, imgReloj, imgTiquete, imgManz
 //Array de objetos moviles en cada escena
 objetoMov[] objetoMovible = new objetoMov[7];
 
-//Verificación para ver si el mouse está moviendo el objeto o se está dejando de dar click izquierdo con el mouse
+//Verificación para ver si el mouse está moviendo el objeto o se está dejando de dar click izquierdo con el mouse; por alguna razón puede fallar
 boolean arrastrando = false;
 
 boolean escenaSecundaria = false;
@@ -29,7 +35,7 @@ void setup() {
   size(1280, 800);
   escenaActual = 0;
 
-  // Cargar las 7 imágenes
+  // Escenas Principales
   sc1 = loadImage("escena1.jpeg");
   sc2 = loadImage("escena2.jpeg");
   sc3 = loadImage("escena3.jpeg");
@@ -38,8 +44,7 @@ void setup() {
   sc6 = loadImage("escena6.jpeg");
   sc7 = loadImage("escena7.jpeg");
 
-  // Cargar las imágenes alternativas
-  // Usar las mismas si no hay alternativas
+  //  las Escenas secundarias
   sc1a = loadImage("escena3A.jpeg");
   sc2b = loadImage("escena3B.jpeg");
   sc3c = loadImage("escena4A.jpeg");
@@ -48,7 +53,7 @@ void setup() {
   sc6f = loadImage("escena6B.jpeg");
   sc7g = loadImage("escena6C.jpeg");
 
-  // Cargar imágenes de objetos
+  // Los objetos que no cuadran
   imgMartillo = loadImage("Matrillo_de_juez.png");
   imgCopa = loadImage("Copa_de_vino.png");
   imgLlave = loadImage("Llave_dorada.png");
@@ -57,7 +62,7 @@ void setup() {
   imgTiquete = loadImage("Tiquete_de_tren.png");
   imgManzana = loadImage("Manzana.png");
 
-  // Inicializar objetos con sus clases específicas para posiciones personalizadas
+  // Aca se inicializan los objetos no cuadrantes con sus clases específicas para las posiciones personalizadas
   objetoMovible[0] = new ObjetoMartillo(imgMartillo, "UN CABALLERO EN MOSCÚ", 0, "La Condena del Conde Alexander Rostov",
     "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
     "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
@@ -92,18 +97,18 @@ void setup() {
 
 void draw() {
   background(0);
-  //  La mayoría de este codigo del void draw indica como deben ir organizada las escenas principales junto con las escenas secundarias
+  // La mayoría de este codigo del void draw indica como deben ir organizada las escenas principales junto con las escenas secundarias
 
   if (escenaActual == 0) {
-    //Centrar las imagenes con las variables designadas para representar o una escena principal o una escena secundaria
+    //Aca se centran las imagenes con las variables designadas para representar o una escena principal o una escena secundaria
     float centroX = (width - sc1.width) / 2;
     float centroY = (height - sc1.height) / 2;
     
     //Primeras instrucciones porque si no nadie va a entender como es la dinamica de la historia
     textSize(14);
     textAlign(CENTER);
-    text("Haz click en los objetos fuera de lugar", width - 640, height - 60);
-    // Uso de la imagen normal o secundaria para la escena; realmente toda esta cantidad de codigo sirve para centrar las imagenes de las escenas
+    text("Encuentra el objeto fuera de lugar", width - 640, height - 60);
+    // Uso de la escena principal o secundaria para la escena; realmente toda esta cantidad de codigo sirve para centrar las imagenes de las escenas
     if (escenaSecundaria) {
       image(sc1a, centroX, centroY); // esto es para que aparezca la imagen
     } else {
@@ -224,20 +229,32 @@ void draw() {
     text(textoHistoria, 50, height - 140, width - 100, 120);
 
     // Instrucción para cerrar la información de la escena
+    fill(#464242, 200); // Gris con opacidad
+    shapeMode(RIGHT);
+    rect(width - 210, height - 60, 175, 350);
+    fill(255);
     textSize(12);
     textAlign(RIGHT);
-    text("Presiona ESPACIO para cerrar", width - 50, height - 20);
+    text("Presiona ESPACIO para cerrar", width - 50, height - 30);
 
     // Instrucciones para cambiar de escena
+    fill(#464242, 200); // Gris con opacidad
+    shapeMode(LEFT);
+    rect(width - 1236, height - 60, 250, 350);
+    fill(255);
     textSize(12);
     textAlign(LEFT);
-    text("Presiona FLECHA DERECHA para AVANZAR a la siguiente escena", width - 1230, height - 40);
-    text("O FLECHA IZQUIERDA para RETROCEDER a la anterior", width - 1230, height - 20);
+    text("Presiona FLECHA DERECHA para AVANZAR ", width - 1230, height - 40);
+    text("Presiona FLECHA IZQUIERDA para RETROCEDER", width - 1230, height - 20);
 
     // Instrucciones para cambiar de escena
+    fill(#464242, 200);
+    shapeMode(CENTER);
+    rect(width - 800, height - 80, 320, 350);
+    fill(255);
     textSize(14);
     textAlign(CENTER);
-    text("Haz click en los objetos fuera de lugar", width - 640, height - 60);
+    text("Encuentra el objeto fuera de lugar fuera de lugar", width - 640, height - 60);
     text("Presiona 'a','b','c'para ver las escenas secundarias", width - 640, height - 40);
     text("Disponible en las escenas 3, 4, 5, 6", width - 640, height - 20);
   }
@@ -279,7 +296,7 @@ void mousePressed() {
     mostrarTexto = false;
     return;
   }
-  // Verifica si se seleccionó un objeto; esto por alguna razon puede fallar a veces hay algo que suele interferir con el movimiento de los objetos pero tras hacer click en ellos se soluciona
+  // Aca con este codigo se verifica si se seleccionó un objeto; esto por alguna razon puede fallar a veces hay algo que suele interferir con el movimiento de los objetos pero tras hacer click en ellos se soluciona
   for (int i = 0; i < 7; i++) {
     if (objetoMovible[i].escena == escenaActual) {
       if (mouseX > objetoMovible[i].x && mouseX < objetoMovible[i].x + 100 &&
@@ -288,7 +305,7 @@ void mousePressed() {
         arrastrando = true;
         mensaje = objetoMovible[i].texto;
 
-        // Mostrar texto de la historia al hacer clic en el objeto; eso me toco investigarlo porque no supe como hacerlo con la información que tenia
+        // Con este elemento se muestra texto de la historia al hacer clic en el objeto; eso me toco investigarlo porque no supe como hacerlo con la información que tenia
         mostrarTextoHistoria(i);
       }
     }
@@ -315,7 +332,7 @@ void mostrarTextoHistoria(int indiceObjeto) {
   textoHistoria = objetoMovible[indiceObjeto].textoCompleto;
 }
 
-// Clase para objetos movibles
+// Clase para objetos movibles, me base sobre todo en el ejemplo de clase
 class objetoMov {
   PImage img;
   float x;
@@ -336,49 +353,49 @@ class objetoMov {
     textoCompleto = textoLargo;
   }
 
-  //Tamaño y posición del objeto del objeto interactivo
+  //Tamaño y posición de los objetos interactivos
   void display() {
     image(img, x, y);
   }
 }
 
-// Clases extendidas para posicionar los objetos en diferenctes posiciones
+// Clases extendidas para posicionar los objetos en diferenctes posiciones; esta es la clase del martillo
 class ObjetoMartillo extends objetoMov {
   ObjetoMartillo(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 875, 525, descripcion, numEscena, titulo, textoLargo);
   }
 }
-
+//Clase de la copa de vino
 class ObjetoCopa extends objetoMov {
   ObjetoCopa(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 275, 625, descripcion, numEscena, titulo, textoLargo);
   }
 }
-
+//Clase de la copa de la llave
 class ObjetoLlave extends objetoMov {
   ObjetoLlave(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 755, 415, descripcion, numEscena, titulo, textoLargo);
   }
 }
-
+//Clase del cepillo
 class ObjetoCepillo extends objetoMov {
   ObjetoCepillo(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 315, 485, descripcion, numEscena, titulo, textoLargo);
   }
 }
-
+//Clase del reloj
 class ObjetoReloj extends objetoMov {
   ObjetoReloj(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 1050, 30, descripcion, numEscena, titulo, textoLargo);
   }
 }
-
+//Clase del tiquete de tren
 class ObjetoTiquete extends objetoMov {
   ObjetoTiquete(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 300, 500, descripcion, numEscena, titulo, textoLargo);
   }
 }
-
+//Clase de la manzana
 class ObjetoManzana extends objetoMov {
   ObjetoManzana(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
     super(imagen, 1065, 490, descripcion, numEscena, titulo, textoLargo);
