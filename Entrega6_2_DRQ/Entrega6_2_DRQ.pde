@@ -366,7 +366,7 @@ class ObjetoCepillo extends objetoMov {
 
 class ObjetoReloj extends objetoMov {
   ObjetoReloj(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
-    super(imagen, 950, 550, descripcion, numEscena, titulo, textoLargo);
+    super(imagen, 1050, 30, descripcion, numEscena, titulo, textoLargo);
   }
 }
 
