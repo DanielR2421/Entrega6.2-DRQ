@@ -7,7 +7,7 @@ PImage sc1, sc2, sc3, sc4, sc5, sc6, sc7;
 PImage sc1a, sc2b, sc3c, sc4d, sc5e, sc6f, sc7g;
 
 //Imágenes de objetos
-PImage imgOrden, imgMenu, imgReloj, imgLibro, imgLlave, imgCarta, imgPiano;
+PImage imgMartillo, imgCopa, imgLlave, imgCepillo, imgReloj, imgTiquete, imgManzana;
 
 //Array de objetos moviles en cada escena
 objetoMov[] objetoMovible = new objetoMov[7];
@@ -49,21 +49,21 @@ void setup() {
   sc7g = loadImage("escena6C.jpeg");
 
   // Cargar imágenes de objetos
-  imgOrden = loadImage("escena1.jpeg");  // Usar escenas como temporales
-  imgMenu = loadImage("escena1.jpeg");
-  imgReloj = loadImage("escena1.jpeg");
-  imgLibro = loadImage("escena1.jpeg");
-  imgLlave = loadImage("escena1.jpeg");
-  imgCarta = loadImage("escena1.jpeg");
-  imgPiano = loadImage("escena1.jpeg");
+  imgMartillo = loadImage("Matrillo_de_juez.png");  // Usar escenas como temporales
+  imgCopa = loadImage("Copa_de_vino.png");
+  imgLlave = loadImage("Llave_dorada.png");
+  imgCepillo = loadImage("Cepillo_de_peinar.png");
+  imgReloj = loadImage("Reloj_de_bolsillo.png");
+  imgTiquete = loadImage("Tiquete_de_tren.png");
+  imgManzana = loadImage("Manzana.png");
 
   // Inicializar objetos con sus textos correspondientes de acuerdo con su clase
-  objetoMovible[0] = new objetoMov(imgReloj, 400, 300, "El reloj del Hotel Metropol", 0, "La Condena del Conde Rostov", 
+  objetoMovible[0] = new objetoMov(imgMartillo, 400, 300, "El reloj del Hotel Metropol", 0, "La Condena del Conde Rostov", 
     "En 1922, el Conde Rostov es sentenciado por un tribunal soviético a arresto domiciliario en el Hotel Metropol. " +
     "Aunque pierde su libertad, mantiene su dignidad mientras cruza la gran entrada del hotel, iniciando una nueva " +
     "vida encerrada entre sus muros.");
     
-  objetoMovible[1] = new objetoMov(imgMenu, 400, 300, "El menú del restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
+  objetoMovible[1] = new objetoMov(imgCopa, 400, 300, "El menú del restaurante Boyarsky", 1, "Vida cotidiana en el Hotel Metropol", 
     "Rostov recorre los pasillos del Boyarsky, observando la vida de los huéspedes desde su mesa habitual. Arriba, " +
     "en su pequeño ático, encuentra consuelo en la lectura, la escritura y el silencio, oscilando entre el bullicio y " +
     "la introspección.");
@@ -73,19 +73,19 @@ void setup() {
     "comparte momentos íntimos con Anna Urbanova, una actriz. Sus relaciones le devuelven la cercanía humana y " +
     "un sentido renovado de pertenencia.");
     
-  objetoMovible[3] = new objetoMov(imgLibro, 400, 300, "El libro de Montaigne", 3, "La llegada de Sofía", 
+  objetoMovible[3] = new objetoMov(imgCepillo, 400, 300, "El libro de Montaigne", 3, "La llegada de Sofía", 
     "Nina regresa para dejarle a su hija Sofía. Rostov, al principio inseguro, aprende a criarla con afecto. " +
     "Juegan, leen, comparten. La niña transforma su rutina y le da un nuevo propósito.");
     
-  objetoMovible[4] = new objetoMov(imgPiano, 400, 300, "El piano de Sofía", 4, "La transformación del Conde", 
+  objetoMovible[4] = new objetoMov(imgReloj, 400, 300, "El piano de Sofía", 4, "La transformación del Conde", 
     "Sofía, ya joven, toca el piano mientras Rostov la observa con orgullo. El hotel ha perdido su esplendor. " +
     "Él, antes aristócrata, ahora trabaja en la cocina. Su rol cambia, pero su esencia se fortalece en lo cotidiano.");
     
-  objetoMovible[5] = new objetoMov(imgCarta, 400, 300, "Carta de despedida", 5, "El plan de escape", 
+  objetoMovible[5] = new objetoMov(imgTiquete, 400, 300, "Carta de despedida", 5, "El plan de escape", 
     "Rostov ayuda a Sofía a huir a París. Finge su suicidio y desaparece por los pasillos secretos del hotel. " +
     "Bajo la lluvia, se aleja en la noche, dejando atrás su antigua vida.");
     
-  objetoMovible[6] = new objetoMov(imgCarta, 400, 300, "Una carta para el futuro", 6, "Final abierto – ¿Es Rostov?", 
+  objetoMovible[6] = new objetoMov(imgManzana, 400, 300, "Una carta para el futuro", 6, "Final abierto – ¿Es Rostov?", 
     "En un café rural, un hombre con sombrero bebe té. Un segundo vaso espera sobre la mesa. La escena sugiere " +
     "que Rostov, al fin, ha encontrado libertad en el anonimato.");
 }
@@ -351,7 +351,8 @@ class objetoMov {
     textoCompleto = textoLargo;
   }
 
+//Tamaño del objeto interactivo
   void display() {
-    image(img, x, y, 100, 100);
+    image(img, x, y);
   }
 }
