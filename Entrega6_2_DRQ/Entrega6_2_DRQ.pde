@@ -348,7 +348,7 @@ class ObjetoMartillo extends objetoMov {
 
 class ObjetoCopa extends objetoMov {
   ObjetoCopa(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
-    super(imagen, 250, 400, descripcion, numEscena, titulo, textoLargo);
+    super(imagen, 275, 625, descripcion, numEscena, titulo, textoLargo);
   }
 }
 
