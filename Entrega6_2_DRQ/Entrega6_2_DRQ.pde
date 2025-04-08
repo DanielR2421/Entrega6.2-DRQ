@@ -342,7 +342,7 @@ class objetoMov {
 // Clases extendidas para posicionar los objetos en diferenctes posiciones
 class ObjetoMartillo extends objetoMov {
   ObjetoMartillo(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
-    super(imagen, 1050, 150, descripcion, numEscena, titulo, textoLargo);
+    super(imagen, 875, 525, descripcion, numEscena, titulo, textoLargo);
   }
 }
 
