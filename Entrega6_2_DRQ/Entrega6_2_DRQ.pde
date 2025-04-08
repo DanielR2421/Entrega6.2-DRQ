@@ -354,7 +354,7 @@ class ObjetoCopa extends objetoMov {
 
 class ObjetoLlave extends objetoMov {
   ObjetoLlave(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
-    super(imagen, 640, 600, descripcion, numEscena, titulo, textoLargo);
+    super(imagen, 755, 415, descripcion, numEscena, titulo, textoLargo);
   }
 }
 
