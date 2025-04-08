@@ -378,6 +378,6 @@ class ObjetoTiquete extends objetoMov {
 
 class ObjetoManzana extends objetoMov {
   ObjetoManzana(PImage imagen, String descripcion, int numEscena, String titulo, String textoLargo) {
-    super(imagen, 640, 400, descripcion, numEscena, titulo, textoLargo);
+    super(imagen, 1065, 490, descripcion, numEscena, titulo, textoLargo);
   }
 }
