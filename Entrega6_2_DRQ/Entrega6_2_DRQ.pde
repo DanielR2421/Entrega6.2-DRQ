@@ -107,7 +107,7 @@ void draw() {
     //Primeras instrucciones porque si no nadie va a entender como es la dinamica de la historia
     textSize(14);
     textAlign(CENTER);
-    text("Encuentra el objeto fuera de lugar", width - 640, height - 60);
+    text("Encuentra y mueve el objeto fuera de lugar", width - 640, height - 60);
     // Uso de la escena principal o secundaria para la escena; realmente toda esta cantidad de codigo sirve para centrar las imagenes de las escenas
     if (escenaSecundaria) {
       image(sc1a, centroX, centroY); // esto es para que aparezca la imagen
@@ -250,11 +250,11 @@ void draw() {
     // Instrucciones para cambiar de escena
     fill(#464242, 200);
     shapeMode(CENTER);
-    rect(width - 800, height - 80, 320, 350);
+    rect(width - 815, height - 80, 350, 350);
     fill(255);
     textSize(14);
     textAlign(CENTER);
-    text("Encuentra el objeto fuera de lugar fuera de lugar", width - 640, height - 60);
+    text("Encuentra y mueve el objeto fuera de lugar fuera de lugar", width - 640, height - 60);
     text("Presiona 'a','b','c'para ver las escenas secundarias", width - 640, height - 40);
     text("Disponible en las escenas 3, 4, 5, 6", width - 640, height - 20);
   }
